@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vshop/constants/style.dart';
 
-const primaryColor = Colors.black87;
+const primaryColor = Color(0XFF1E1E1E);
 final materialColor = MaterialColor(
   primaryColor.value,
   {
@@ -26,6 +26,13 @@ ThemeData theme(BuildContext context) {
       primarySwatch: materialColor,
       backgroundColor: Colors.white,
     ),
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+        fontFamily: GoogleFonts.comfortaa().fontFamily,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
     textTheme: GoogleFonts.comfortaaTextTheme(),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -47,6 +54,7 @@ ThemeData theme(BuildContext context) {
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: EdgeInsets.zero,
+      constraints: const BoxConstraints(maxHeight: 40),
       filled: true,
       fillColor: Colors.grey.shade200,
       prefixIconColor: Colors.black54,

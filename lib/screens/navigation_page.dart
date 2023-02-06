@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 class NavigationPage extends StatelessWidget {
@@ -17,6 +18,9 @@ class NavigationPage extends StatelessWidget {
           currentIndex: value,
           onTap: (index) {
             indexNotifyValue.value = index;
+            if (index == 0) context.go('/home');
+            if (index == 1) context.go('/search');
+            if (index == 2) context.push('/shopping');
           },
           items: const [
             BottomNavigationBarItem(
@@ -29,7 +33,6 @@ class NavigationPage extends StatelessWidget {
               label: 'Rechercher',
               activeIcon: Icon(Iconsax.search_normal_15),
             ),
-
             BottomNavigationBarItem(
               icon: Icon(Iconsax.shopping_bag),
               label: 'Panier',

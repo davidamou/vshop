@@ -1,9 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vshop/utils/router.dart';
 import 'package:vshop/utils/theme.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
   runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,4 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

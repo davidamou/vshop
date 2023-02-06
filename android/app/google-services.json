@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1209064995",
+    "project_id": "vshop-e33ff",
+    "storage_bucket": "vshop-e33ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1209064995:android:dcfad353ce10c6fae79b96",
+        "android_client_info": {
+          "package_name": "com.davidamzou.vshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1209064995-cue0ot7gbjvnnlmatk1ojcp3ls7qcn01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAib10myhaIaMopMd_pQBhMAR42YxXT8Fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1209064995-cue0ot7gbjvnnlmatk1ojcp3ls7qcn01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
