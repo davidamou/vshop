@@ -48,9 +48,9 @@ class _RowColorState extends State<RowColor> {
             decoration: BoxDecoration(
               borderRadius: defaultBorderRadius,
               border: Border.all(
-                  width: 1,
-                  color:
-                      Theme.of(context).colorScheme.primary.withOpacity(0.4)),
+                width: 1,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+              ),
             ),
             child: child,
           ),
