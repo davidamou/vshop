@@ -36,69 +36,56 @@ class _DetailPageState extends State<DetailPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            leading: Container(),
+            leading: back(context),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Iconsax.heart),
+              ),
+            ],
             expandedHeight: height / 1.2,
-            flexibleSpace: Padding(
-              padding: EdgeInsets.only(top: height / 20, left: 4, right: 4),
-              child: Stack(
-                children: [
-                  Hero(
-                    tag: product.id,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: defaultBorderRadius,
-                        child: CarouselSlider(
-                          items: getListImage(product),
-                          options: CarouselOptions(
-                            initialPage: _imageIndex,
-                            onPageChanged: (index, reason) {
-                              setState(() => _imageIndex = index);
-                            },
-                            viewportFraction: 1,
-                            aspectRatio: 0.1,
-                          ),
+            flexibleSpace: Stack(
+              children: [
+                Hero(
+                  tag: product.id,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: defaultBorderRadius,
+                      child: CarouselSlider(
+                        items: getListImage(product),
+                        options: CarouselOptions(
+                          initialPage: _imageIndex,
+                          onPageChanged: (index, reason) {
+                            setState(() => _imageIndex = index);
+                          },
+                          viewportFraction: 1,
+                          aspectRatio: 0.1,
                         ),
                       ),
                     ),
                   ),
-                  Positioned(
-                    left: 8,
-                    top: 8,
-                    right: 8,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        back(context),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Iconsax.heart),
-                        )
-                      ],
-                    ),
+                ),
+                Positioned(
+                  left: 16,
+                  bottom: 16,
+                  child: RowColor(
+                    currentIndex: _imageColorIndex,
+                    onTap: (index) => setState(() => _imageColorIndex = index),
+                    colors: getColors(product),
                   ),
-                  Positioned(
-                    left: 16,
-                    bottom: 16,
-                    child: RowColor(
-                      currentIndex: _imageColorIndex,
-                      onTap: (index) =>
-                          setState(() => _imageColorIndex = index),
-                      colors: getColors(product),
-                    ),
+                ),
+                Positioned(
+                  right: 16,
+                  bottom: 16,
+                  child: ImagesIndex(
+                    initialIndex: _imageIndex,
+                    onTap: (index) => setState(() => _imageIndex = index),
+                    elements:
+                        product.images?[_imageColorIndex]['imagesUrl'] as List,
                   ),
-                  Positioned(
-                    right: 16,
-                    bottom: 16,
-                    child: ImagesIndex(
-                      initialIndex: _imageIndex,
-                      onTap: (index) => setState(() => _imageIndex = index),
-                      elements: product.images?[_imageColorIndex]['imagesUrl']
-                          as List,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           SliverPadding(

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/constants/start_page_string.dart';
 
-class StartPage extends StatelessWidget {
-  final _radius = const Radius.circular(32.0);
+import '../constants/style.dart';
+import '../widgets/login_modal.dart';
 
+class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
@@ -18,11 +19,10 @@ class StartPage extends StatelessWidget {
           height: height,
           child: Stack(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: double.infinity,
-                height: height / 1.5,
-                child: const Image(
-                  image: AssetImage('assets/images/img_start.jpg'),
+                child: Image(
+                  image: AssetImage('assets/images/bg_img.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -31,16 +31,11 @@ class StartPage extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 32,
-                  ),
+                  margin: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.background,
-                    borderRadius: BorderRadius.only(
-                      topRight: _radius,
-                      topLeft: _radius,
-                    ),
+                    borderRadius: defaultBorderRadius,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +59,12 @@ class StartPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => const LoginModal(),
+                            );
+                          },
                           child: const Text('Se connecter'),
                         ),
                       ),

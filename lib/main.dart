@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'VShop',
       routerConfig: router,
       theme: theme(context),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

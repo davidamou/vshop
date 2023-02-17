@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vshop/constants/style.dart';
 
 class RowColor extends StatefulWidget {
-  late int? currentIndex;
+  int? currentIndex;
   final Function(int index) onTap;
   final List<Color> colors;
 

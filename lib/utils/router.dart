@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/models/product.dart';
 import 'package:vshop/pages/detail_page.dart';
+import 'package:vshop/pages/favorite_page.dart';
 import 'package:vshop/pages/home_page.dart';
 import 'package:vshop/pages/navigation_page.dart';
+import 'package:vshop/pages/profile_page.dart';
 import 'package:vshop/pages/search_page.dart';
 import 'package:vshop/pages/start_page.dart';
 
@@ -41,6 +43,14 @@ final router = GoRouter(
         GoRoute(
           path: '/search',
           builder: (context, state) => const SearchPage(),
+        ),
+        GoRoute(
+          path: '/favorite',
+          builder: (context, state) => const FavoritePage(),
+        ),
+        GoRoute(
+          path: '/profile',
+          builder: (context, state) => const ProfilePage(),
         )
       ],
     ),

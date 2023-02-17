@@ -17,10 +17,12 @@ class NavigationPage extends StatelessWidget {
         builder: (context, value, child) => BottomNavigationBar(
           currentIndex: value,
           onTap: (index) {
-            indexNotifyValue.value = index;
+            if (index != 2) indexNotifyValue.value = index;
             if (index == 0) context.go('/home');
             if (index == 1) context.go('/search');
             if (index == 2) context.push('/shopping');
+            if (index == 3) context.go('/favorite');
+            if (index == 4) context.go('/profile');
           },
           items: const [
             BottomNavigationBarItem(
@@ -44,9 +46,9 @@ class NavigationPage extends StatelessWidget {
               activeIcon: Icon(Iconsax.heart5),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Iconsax.user),
+              icon: Icon(Iconsax.profile_circle),
               label: 'Utilisateur',
-              activeIcon: Icon(Iconsax.user),
+              activeIcon: Icon(Iconsax.profile_circle5),
             ),
           ],
           showSelectedLabels: false,

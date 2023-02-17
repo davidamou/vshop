@@ -6,7 +6,7 @@ const primaryColor = Color(0XFF1E1E1E);
 final materialColor = MaterialColor(
   primaryColor.value,
   {
-    50: primaryColor.withOpacity(.05),
+    50: primaryColor.withOpacity(.08),
     100: primaryColor.withOpacity(.1),
     200: primaryColor.withOpacity(.2),
     300: primaryColor.withOpacity(.3),
@@ -29,9 +29,9 @@ ThemeData theme(BuildContext context) {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-        fontFamily: GoogleFonts.comfortaa().fontFamily,
-        fontWeight: FontWeight.bold,
-      ),
+            fontFamily: GoogleFonts.comfortaa().fontFamily,
+            fontWeight: FontWeight.bold,
+          ),
     ),
     textTheme: GoogleFonts.comfortaaTextTheme(),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -53,10 +53,9 @@ ThemeData theme(BuildContext context) {
       selectedItemColor: primaryColor,
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: EdgeInsets.zero,
-      constraints: const BoxConstraints(maxHeight: 40),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
       filled: true,
-      fillColor: Colors.grey.shade200,
+      fillColor: materialColor.shade50,
       prefixIconColor: Colors.black54,
       enabledBorder: OutlineInputBorder(
         borderRadius: defaultBorderRadius,
