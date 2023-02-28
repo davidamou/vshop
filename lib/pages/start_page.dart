@@ -14,6 +14,7 @@ class StartPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,
@@ -27,7 +28,7 @@ class StartPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 0,
+                bottom: 32.0,
                 left: 0,
                 right: 0,
                 child: Container(

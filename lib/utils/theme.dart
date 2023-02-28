@@ -55,6 +55,7 @@ ThemeData theme(BuildContext context) {
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
       filled: true,
+      constraints: const BoxConstraints(maxHeight: 40.0),
       fillColor: materialColor.shade50,
       prefixIconColor: Colors.black54,
       enabledBorder: OutlineInputBorder(

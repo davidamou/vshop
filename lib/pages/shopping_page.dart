@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vshop/constants/function.dart';
 import '../constants/style.dart';
+import '../widgets/product_chart.dart';
 
 class ShoppingPage extends StatefulWidget {
   const ShoppingPage({super.key});
+
+  static final List<ProductChart> chartListProduct = [];
 
   @override
   State<ShoppingPage> createState() => _ShoppingPageState();
@@ -16,6 +20,12 @@ class _ShoppingPageState extends State<ShoppingPage> {
     return Scaffold(
       appBar: AppBar(
         leading: back(context),
+        actions: [
+          IconButton(
+            onPressed: _emptyBasket,
+            icon: const Icon(Iconsax.trash),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -34,11 +44,13 @@ class _ShoppingPageState extends State<ShoppingPage> {
                 child: const Text('Edit'),
               ),
             ),
+            const SizedBox(height: 20.0),
+            ...ShoppingPage.chartListProduct,
           ],
         ),
       ),
-      bottomSheet: Container(
-        height: 250,
+      bottomNavigationBar: ShoppingPage.chartListProduct.isNotEmpty? Container(
+        height: 208,
         color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.symmetric(
           horizontal: 16.0,
@@ -49,13 +61,13 @@ class _ShoppingPageState extends State<ShoppingPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            priceDetail(label: 'Subtotal', price: 300.0),
+            priceDetail(label: 'Subtotal', price: _totalPrice()),
             const SizedBox(height: 24),
             priceDetail(label: 'Delivery', price: 20.0),
             const Divider(thickness: 0.1, height: 32),
             priceDetail(
               label: 'Total',
-              price: 320.0,
+              price: _totalPrice() + 20,
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
@@ -71,7 +83,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
             ),
           ],
         ),
-      ),
+      ) : null,
     );
   }
 
@@ -100,5 +112,36 @@ class _ShoppingPageState extends State<ShoppingPage> {
         ),
       ],
     );
+  }
+
+  _emptyBasket() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Delete"),
+        content: const Text("Do you want to empty the basket"),
+        actions: [
+          OutlinedButton(
+            onPressed: () => context.pop(),
+            child: const Text('No'),
+          ),
+          ElevatedButton(
+            onPressed: () => setState(() {
+              ShoppingPage.chartListProduct.clear();
+              context.pop();
+            }),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  double _totalPrice() {
+    double sum = 0.0;
+    ShoppingPage.chartListProduct.forEach((element) {
+      sum += (element.price + element.quantity);
+    });
+    return sum;
   }
 }

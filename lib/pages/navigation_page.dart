@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:vshop/widgets/login_modal.dart';
 
 class NavigationPage extends StatelessWidget {
   final Widget child;
   static ValueNotifier<int> indexNotifyValue = ValueNotifier(0);
 
-  const NavigationPage({Key? key, required this.child}) : super(key: key);
+  NavigationPage({Key? key, required this.child}) : super(key: key);
+
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +21,26 @@ class NavigationPage extends StatelessWidget {
         builder: (context, value, child) => BottomNavigationBar(
           currentIndex: value,
           onTap: (index) {
-            if (index != 2) indexNotifyValue.value = index;
-            if (index == 0) context.go('/home');
-            if (index == 1) context.go('/search');
+            if (index == 0) {
+              context.go('/home');
+              indexNotifyValue.value = index;
+            }
+            if (index == 1) {
+              indexNotifyValue.value = index;
+              context.go('/search');
+            }
             if (index == 2) context.push('/shopping');
-            if (index == 3) context.go('/favorite');
-            if (index == 4) context.go('/profile');
+            if (index == 3) {
+              if (user != null) {
+                context.go('/favorite');
+                indexNotifyValue.value = index;
+              } else {
+                _showLoginModal(context);
+              }
+            }
+            if (index == 4) {
+              context.go('/profile');
+            }
           },
           items: const [
             BottomNavigationBarItem(
@@ -55,6 +73,13 @@ class NavigationPage extends StatelessWidget {
           showUnselectedLabels: false,
         ),
       ),
+    );
+  }
+
+  _showLoginModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const LoginModal(),
     );
   }
 }

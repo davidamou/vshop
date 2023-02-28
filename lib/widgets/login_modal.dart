@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vshop/constants/style.dart';
 
@@ -22,20 +24,31 @@ class LoginModal extends StatelessWidget {
     );
 
     return Container(
-      height: 316,
-      padding: const EdgeInsets.all(24.0),
+      height: 300,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Se connecter',
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(fontWeight: FontWeight.bold),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Se connecter',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(Icons.close_rounded),
+              )
+            ],
           ),
-          const SizedBox(height: 24.0),
+          const SizedBox(height: 28.0),
           TextFormField(
             decoration: const InputDecoration(
               hintText: 'Adressse email',
@@ -73,7 +86,11 @@ class LoginModal extends StatelessWidget {
               const SizedBox(width: 12.0),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Iconsax.gallery),
+                icon: SvgPicture.asset(
+                  'assets/images/google.svg',
+                  width: 24,
+                  height: 24,
+                ),
                 style: iconButtonStyle,
               ),
             ],

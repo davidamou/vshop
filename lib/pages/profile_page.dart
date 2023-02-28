@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -18,16 +19,17 @@ class _ProfilePageState extends State<ProfilePage> {
     size: 16.0,
   );
 
+  var user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            toolbarHeight: 88.0,
-            title: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              toolbarHeight: 100.0,
+              title: Row(
                 children: [
                   CachedNetworkImage(
                     imageUrl:
@@ -80,60 +82,59 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-          ),
-          //body
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                ListTile(
-                  title: const Text('Message'),
-                  onTap: () {},
-                  leading: Icon(Iconsax.message, size: iconSize),
-                  trailing: trailingIcon,
-                ),
-                ListTile(
-                  title: const Text('Devises'),
-                  onTap: () {},
-                  leading: Icon(Iconsax.money, size: iconSize),
-                  trailing: trailingIcon,
-                ),
-                // ValueListenableBuilder<ThemeMode>(
-                //     valueListenable: themeModeNotifier,
-                //     builder: (context, value, child) {
-                //       return ListTile(
-                //         leading: value.name == "dark"
-                //             ? Icon(Iconsax.moon4, size: iconSize)
-                //             : Icon(Iconsax.sun_1, size: iconSize),
-                //         title: const Text('Theme mode'),
-                //         subtitle: Text(value.name),
-                //         onTap: () => showDialog(
-                //             context: context, builder: (_) => const ThemeDialog()),
-                //         trailing: trailingIcon,
-                //       );
-                //     }),
-                ListTile(
-                  title: const Text('My purchases'),
-                  onTap: () {},
-                  leading: Icon(Iconsax.shopping_bag4, size: iconSize),
-                  trailing: trailingIcon,
-                ),
-                ListTile(
-                  title: const Text('Favorite'),
-                  onTap: () {},
-                  leading: Icon(Iconsax.heart, size: iconSize),
-                  trailing: trailingIcon,
-                ),
-                const SizedBox(height: 24.0),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {}, child: const Text('Log out')),
-                )
-              ],
+            //body
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  ListTile(
+                    title: const Text('Message'),
+                    onTap: () {},
+                    leading: Icon(Iconsax.message, size: iconSize),
+                    trailing: trailingIcon,
+                  ),
+                  ListTile(
+                    title: const Text('Devises'),
+                    onTap: () {},
+                    leading: Icon(Iconsax.money, size: iconSize),
+                    trailing: trailingIcon,
+                  ),
+                  // ValueListenableBuilder<ThemeMode>(
+                  //     valueListenable: themeModeNotifier,
+                  //     builder: (context, value, child) {
+                  //       return ListTile(
+                  //         leading: value.name == "dark"
+                  //             ? Icon(Iconsax.moon4, size: iconSize)
+                  //             : Icon(Iconsax.sun_1, size: iconSize),
+                  //         title: const Text('Theme mode'),
+                  //         subtitle: Text(value.name),
+                  //         onTap: () => showDialog(
+                  //             context: context, builder: (_) => const ThemeDialog()),
+                  //         trailing: trailingIcon,
+                  //       );
+                  //     }),
+                  ListTile(
+                    title: const Text('My purchases'),
+                    onTap: () {},
+                    leading: Icon(Iconsax.shopping_bag4, size: iconSize),
+                    trailing: trailingIcon,
+                  ),
+                  ListTile(
+                    title: const Text('Favorite'),
+                    onTap: () {},
+                    leading: Icon(Iconsax.heart, size: iconSize),
+                    trailing: trailingIcon,
+                  ),
+                  ListTile(
+                    title: Text((user != null) ? 'Log Out' : 'Log In') ,
+                    onTap: () {},
+                    leading: Icon((user != null)? Iconsax.logout : Iconsax.login, size: iconSize),
+                    trailing: trailingIcon,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,6 +24,14 @@ class CacheNetworkImageAdaptive extends StatelessWidget {
               image: imageProvider,
               fit: BoxFit.cover,
             ),
+          ),
+        );
+      },
+      placeholder: (context, url) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: defaultBorderRadius,
+            color: Color(math.Random().nextInt(Colors.blue.value)).withOpacity(0.2),
           ),
         );
       },
