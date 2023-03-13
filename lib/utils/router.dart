@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/models/product.dart';
-import 'package:vshop/pages/detail_page.dart';
-import 'package:vshop/pages/favorite_page.dart';
-import 'package:vshop/pages/home_page.dart';
-import 'package:vshop/pages/navigation_page.dart';
-import 'package:vshop/pages/profile_page.dart';
-import 'package:vshop/pages/search_page.dart';
-import 'package:vshop/pages/start_page.dart';
+import 'package:vshop/screens/detail_page.dart';
+import 'package:vshop/screens/favorite_page.dart';
+import 'package:vshop/screens/home_page.dart';
+import 'package:vshop/screens/navigation_page.dart';
+import 'package:vshop/screens/profile_page.dart';
+import 'package:vshop/screens/search_page.dart';
+import 'package:vshop/screens/start_page.dart';
 
-import '../pages/shopping_page.dart';
+import '../screens/shopping_page.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final shellNavigatorKey = GlobalKey<NavigatorState>();
