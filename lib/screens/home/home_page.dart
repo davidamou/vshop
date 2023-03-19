@@ -3,9 +3,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:vshop/constants/style.dart';
 import 'package:vshop/providers/post_provider.dart';
 import 'package:vshop/providers/product_provider.dart';
-import 'package:vshop/widgets/grid_adaptive.dart';
-import 'package:vshop/widgets/post_view.dart';
-import 'package:vshop/widgets/tab_adaptive.dart';
+import 'package:vshop/screens/home/components/grid_adaptive.dart';
+import 'package:vshop/screens/home/components/post_view.dart';
+import 'package:vshop/screens/home/components/tab_adaptive.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

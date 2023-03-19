@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vshop/constants/style.dart';
 
-import '../models/post.dart';
-import 'cache_network_image_adaptive.dart';
+import '../../../models/post.dart';
+import '../../loading/cache_network_image_adaptive.dart';
 
 class PostView extends StatelessWidget {
   final Post post;

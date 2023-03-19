@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vshop/constants/function.dart';
-import '../constants/style.dart';
-import '../widgets/product_chart.dart';
+import '../../constants/style.dart';
+import 'components/product_chart.dart';
 
 class ShoppingPage extends StatefulWidget {
   const ShoppingPage({super.key});

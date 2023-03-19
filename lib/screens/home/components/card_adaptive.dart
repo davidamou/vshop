@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/constants/style.dart';
-import 'package:vshop/widgets/cache_network_image_adaptive.dart';
+import 'package:vshop/screens/loading/cache_network_image_adaptive.dart';
 
-import '../models/product.dart';
+import '../../../models/product.dart';
 
 class CardAdaptive extends StatefulWidget {
   final Product product;

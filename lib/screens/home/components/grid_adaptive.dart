@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vshop/widgets/card_adaptive.dart';
+import 'package:vshop/screens/home/components/card_adaptive.dart';
 
-import '../models/product.dart';
+import '../../../models/product.dart';
 
 class GridAdaptive extends StatelessWidget {
   final Stream<QuerySnapshot<Product>> data;

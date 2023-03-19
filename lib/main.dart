@@ -1,13 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vshop/utils/router.dart';
-import 'package:vshop/utils/theme.dart';
-
+import 'package:vshop/router/router.dart';
+import 'package:vshop/themes/theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
   runApp(const MyApp());
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

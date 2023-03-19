@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vshop/widgets/login_modal.dart';
+
+import 'loading/login_modal.dart';
 
 class NavigationPage extends StatelessWidget {
   final Widget child;
@@ -35,7 +36,7 @@ class NavigationPage extends StatelessWidget {
                 context.go('/favorite');
                 indexNotifyValue.value = index;
               } else {
-                _showLoginModal(context);
+                showLoginModal(context);
               }
             }
             if (index == 4) {
@@ -73,13 +74,6 @@ class NavigationPage extends StatelessWidget {
           showUnselectedLabels: false,
         ),
       ),
-    );
-  }
-
-  _showLoginModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => const LoginModal(),
     );
   }
 }

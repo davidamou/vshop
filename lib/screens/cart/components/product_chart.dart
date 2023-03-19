@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vshop/widgets/cache_network_image_adaptive.dart';
+import 'package:vshop/screens/loading/cache_network_image_adaptive.dart';
 
-import '../constants/style.dart';
+import '../../../constants/style.dart';
 
 class ProductChart extends StatefulWidget {
   late int quantity;

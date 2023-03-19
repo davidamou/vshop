@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vshop/constants/start_page_string.dart';
-
-import '../constants/style.dart';
-import '../widgets/login_modal.dart';
+import 'package:vshop/constants/text_style.dart';
+import '../../constants/style.dart';
+import 'login_modal.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -14,7 +13,6 @@ class StartPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
       body: SingleChildScrollView(
         child: SizedBox(
           height: height,
@@ -28,7 +26,7 @@ class StartPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 32.0,
+                bottom: 12.0,
                 left: 0,
                 right: 0,
                 child: Container(
@@ -43,11 +41,11 @@ class StartPage extends StatelessWidget {
                     children: [
                       Text(
                         'Bienvenu,',
-                        style: theme.textTheme.headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                        style: titleLarge(context),
                       ),
                       const SizedBox(height: 12.0),
-                      const Text(welcomeMessage),
+                      const Text(
+                          'Vous chercher a savoir ce qui est de nouveau dans la mode, alos vous etes au bon.'),
                       const SizedBox(height: 24.0),
                       SizedBox(
                         width: double.infinity,
@@ -60,12 +58,7 @@ class StartPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const LoginModal(),
-                            );
-                          },
+                          onPressed: () => showLoginModal(context),
                           child: const Text('Se connecter'),
                         ),
                       ),

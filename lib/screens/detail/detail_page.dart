@@ -3,14 +3,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vshop/screens/shopping_page.dart';
-import 'package:vshop/widgets/product_chart.dart';
+import 'package:vshop/screens/cart/shopping_page.dart';
+import 'package:vshop/screens/cart/components/product_chart.dart';
 
-import '../constants/function.dart';
-import '../constants/style.dart';
-import '../models/product.dart';
-import '../widgets/imges_index.dart';
-import '../widgets/row_color.dart';
+import '../../constants/function.dart';
+import '../../constants/style.dart';
+import '../../models/product.dart';
+import 'components/imges_index.dart';
+import 'components/row_color.dart';
 
 class DetailPage extends StatefulWidget {
   final Product product;
