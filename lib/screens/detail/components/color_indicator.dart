@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vshop/constants/style.dart';
 
-class RowColor extends StatefulWidget {
-  int? currentIndex;
+class ColorIndicator extends StatefulWidget {
+  final int currentIndex;
   final Function(int index) onTap;
   final List<Color> colors;
 
-  RowColor(
+  const ColorIndicator(
       {Key? key,
       this.currentIndex = 0,
       required this.onTap,
@@ -14,10 +14,10 @@ class RowColor extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<RowColor> createState() => _RowColorState();
+  State<ColorIndicator> createState() => _ColorIndicatorState();
 }
 
-class _RowColorState extends State<RowColor> {
+class _ColorIndicatorState extends State<ColorIndicator> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = [];
@@ -27,7 +27,6 @@ class _RowColorState extends State<RowColor> {
         onTap: () {
           setState(() {
             widget.onTap(i);
-            widget.currentIndex = i;
           });
         },
         borderRadius: defaultBorderRadius,

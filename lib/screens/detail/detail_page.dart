@@ -1,16 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vshop/screens/cart/shopping_page.dart';
-import 'package:vshop/screens/cart/components/product_chart.dart';
-
-import '../../constants/function.dart';
+import 'package:vshop/screens/detail/components/detail_app_bar.dart';
 import '../../constants/style.dart';
 import '../../models/product.dart';
-import 'components/imges_index.dart';
-import 'components/row_color.dart';
 
 class DetailPage extends StatefulWidget {
   final Product product;
@@ -22,8 +14,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  int _imageColorIndex = 0;
-  int _imageIndex = 0;
   int _size = 0;
 
   @override
@@ -34,68 +24,13 @@ class _DetailPageState extends State<DetailPage> {
     final titleStyle = textTheme.bodyMedium?.copyWith(
       fontWeight: FontWeight.w600,
     );
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           shrinkWrap: true,
           slivers: [
-            SliverAppBar(
-              leading: back(context),
-              actions: [
-                IconButton(
-                  onPressed: () => context.push('/shopping'),
-                  icon: const Icon(Iconsax.shopping_bag),
-                ),
-                 IconButton(
-                  onPressed: _addToFavorite,
-                  icon: const Icon(Iconsax.heart),
-                ),  
-              ],
-              expandedHeight: height / 1.2,
-              flexibleSpace: Stack(
-                children: [
-                  Hero(
-                    tag: product.id,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: CarouselSlider(
-                        items: _getListImage(product),
-                        options: CarouselOptions(
-                          initialPage: _imageIndex,
-                          onPageChanged: (index, reason) {
-                            setState(() => _imageIndex = index);
-                          },
-                          viewportFraction: 1,
-                          aspectRatio: 0.1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 16,
-                    bottom: 16,
-                    child: RowColor(
-                      currentIndex: _imageColorIndex,
-                      onTap: (index) =>
-                          setState(() => _imageColorIndex = index),
-                      colors: getColors(product),
-                    ),
-                  ),
-                  Positioned(
-                    right: 16,
-                    bottom: 16,
-                    child: ImagesIndex(
-                      initialIndex: _imageIndex,
-                      onTap: (index) => setState(() => _imageIndex = index),
-                      elements: product.images?[_imageColorIndex]['imagesUrl']
-                          as List,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            DetailAppBar(images: product.images!),
             SliverPadding(
               padding: const EdgeInsets.all(16),
               sliver: SliverList(
@@ -207,58 +142,10 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  List<Color> getColors(Product product) {
-    return product.images!
-        .map((image) => Color(int.parse("0xff${image['color']}")))
-        .toList();
-  }
-
-  List<Widget> _getListImage(Product product) {
-    return (product.images?[_imageColorIndex]['imagesUrl'] as List)
-        .map(
-          (imageUrl) => CachedNetworkImage(
-            imageUrl: "$imageUrl",
-            imageBuilder: (context, imageProvider) {
-              return Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              );
-            },
-            placeholder: (context, url) => Container(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-            ),
-          ),
-        )
-        .toList();
-  }
-
   void _addToCart() {
-    ShoppingPage.chartListProduct.add(
-      ProductChart(
-        quantity: 1,
-        productId: widget.product.id,
-        imageUrl: widget.product.images?[_imageColorIndex]['imagesUrl']
-            [_imageIndex],
-        productName: "${widget.product.name}",
-        price: widget.product.price!,
-        size: widget.product.size?[_size],
-      ),
-    );
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Poduct added to cart'),
-      ),
-    );
-  }
-
-  void _addToFavorite() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Poduct added to favorite'),
       ),
     );
   }

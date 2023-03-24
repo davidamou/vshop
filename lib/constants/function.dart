@@ -8,3 +8,7 @@ Widget back(BuildContext context) {
     icon: const Icon(Iconsax.arrow_left_2),
   );
 }
+
+Size getScreenSize(BuildContext context) {
+  return MediaQuery.of(context).size;
+}

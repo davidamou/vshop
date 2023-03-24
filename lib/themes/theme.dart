@@ -41,10 +41,11 @@ var inputDecoration = InputDecorationTheme(
 );
 
 ThemeData theme(BuildContext context) {
-  return ThemeData(
+  return ThemeData.light().copyWith(
     useMaterial3: true,
-    brightness: Brightness.light,
-    primarySwatch: primarySwatch,
+    colorScheme: const ColorScheme.light().copyWith(
+      primary: primaryColor,
+    ),
     scaffoldBackgroundColor: backgroundColor,
     textTheme: GoogleFonts.comfortaaTextTheme(),
     elevatedButtonTheme: elevateButton,
