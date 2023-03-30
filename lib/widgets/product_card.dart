@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/constants/style.dart';
-import 'package:vshop/screens/loading/cache_network_image_adaptive.dart';
+import 'package:vshop/widgets/cache_network_image_adaptive.dart';
+import 'package:vshop/screens/search/search_page.dart';
 
-import '../../../models/product.dart';
+import '../models/product.dart';
 
-class CardAdaptive extends StatefulWidget {
+class ProductCard extends StatefulWidget {
   final Product product;
 
-  const CardAdaptive({Key? key, required this.product}) : super(key: key);
+  const ProductCard({Key? key, required this.product}) : super(key: key);
 
   @override
-  State<CardAdaptive> createState() => _CardAdaptiveState();
+  State<ProductCard> createState() => _ProductCardState();
 }
 
-class _CardAdaptiveState extends State<CardAdaptive> {
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.titleSmall;
     return InkWell(
-      onTap: () => context.push('/detail', extra: widget.product),
+      onTap: () {
+        SearchPage.addToRecentViewList(widget.product);
+        context.push('/detail', extra: widget.product);
+      },
       borderRadius: defaultBorderRadius,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

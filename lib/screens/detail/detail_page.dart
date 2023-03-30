@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vshop/screens/detail/components/detail_app_bar.dart';
-import '../../constants/style.dart';
+import 'package:vshop/screens/detail/components/detail_size.dart';
+import 'package:vshop/constants/function.dart';
+import 'package:vshop/screens/detail/components/detail_bottom_bar.dart';
+import 'package:vshop/screens/detail/components/detail_image.dart';
+import '../../constants/text_style.dart';
 import '../../models/product.dart';
+import '../login/login_modal.dart';
+import 'components/color_indicator.dart';
 
 class DetailPage extends StatefulWidget {
   final Product product;
@@ -14,139 +20,106 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  int _size = 0;
+  var _size = 0;
+  int _colorIndex = 0;
+  int _imageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final titleStyle = textTheme.bodyMedium?.copyWith(
-      fontWeight: FontWeight.w600,
-    );
 
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          shrinkWrap: true,
-          slivers: [
-            DetailAppBar(images: product.images!),
-            SliverPadding(
-              padding: const EdgeInsets.all(16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    Text(
-                      '${product.name}',
-                      style: textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        const Icon(
-                          Iconsax.star1,
-                          color: Colors.amber,
-                          size: 12,
-                        ),
-                        Text(
-                          " 4.8",
-                          style: textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
-                        Text(
-                          "(3335)   *   212 reviwes",
-                          style: textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      '${product.description}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.primary.withOpacity(0.5),
-                      ),
-                    ),
-
-                    //Sizes
-                    const SizedBox(height: 20),
-                    Text('Sizes', style: titleStyle),
-                    const SizedBox(height: 8),
-                    DefaultTabController(
-                      length: product.size!.length,
-                      initialIndex: _size,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: defaultBorderRadius,
-                          border: Border.all(
-                            width: 1,
-                            color: theme.colorScheme.primary.withOpacity(0.1),
-                          ),
-                        ),
-                        child: TabBar(
-                          onTap: (value) => setState(() {
-                            _size = value;
-                          }),
-                          isScrollable: true,
-                          dividerColor: Colors.transparent,
-                          indicatorSize: TabBarIndicatorSize.label,
-                          tabs: product.size!.map((s) => Tab(text: s)).toList(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+      appBar: AppBar(
+        title: const Text('Detail product'),
+        leading: back(context),
+        actions: [
+          IconButton(
+            onPressed: addToCart,
+            icon: const Icon(Iconsax.heart),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8.0),
+            AspectRatio(
+              aspectRatio: 1,
+              child: DetailImage(
+                images: product.images!,
+                colorIndex: _colorIndex,
+                onImageChanged: (int index) {
+                  setState(() => _imageIndex = index);
+                },
               ),
             ),
+            const SizedBox(height: 20.0),
+            Text(
+              '${product.name}',
+              style: titleMedium(context, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12.0),
+            Row(
+              children: [
+                const Icon(
+                  Iconsax.star1,
+                  color: Colors.orange,
+                  size: 16,
+                ),
+                Text(
+                  " 4.8",
+                  style: titleSmall(context, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "(3335)   *   212 reviwes",
+                  style: bodySmall(context),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12.0),
+            Text(
+              '${product.description}',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: bodyMedium(context),
+            ),
+            const SizedBox(height: 16.0),
+            ColorIndicator(
+              currentIndex: _colorIndex,
+              onTap: (index) => setState(() => _colorIndex = index),
+              colors: getColors(),
+            ),
+            const SizedBox(height: 16.0),
+            DetailSize(
+              onSizeChanged: (size) => setState(() => _size = size),
+              size: product.size!,
+            ),
+            const SizedBox(height: 16.0),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        surfaceTintColor: theme.colorScheme.background,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  const Text("\$"),
-                  Text(
-                    "${(product.price! * product.promo!) / 100}",
-                    style: textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Text("  \$"),
-                  Text(
-                    "${product.price}",
-                    style: const TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: _addToCart,
-                child: const Text('Add to cart'),
-              ),
-            )
-          ],
-        ),
+      bottomNavigationBar: DetailBottomBar(
+        imageUrl: product.images![_colorIndex]['imagesUrl'][_imageIndex],
+        size: product.size![_size],
+        price: product.price!,
+        promo: product.promo!,
       ),
     );
   }
 
-  void _addToCart() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Poduct added to cart'),
-      ),
-    );
+  List<Color> getColors() {
+    return widget.product.images!
+        .map((image) => Color(int.parse("0xff${image['color']}")))
+        .toList();
+  }
+
+  void addToCart() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      //
+    } else {
+      showLoginModal(context);
+    }
   }
 }

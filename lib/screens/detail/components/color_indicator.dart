@@ -43,7 +43,7 @@ class _ColorIndicatorState extends State<ColorIndicator> {
         children.add(
           Container(
             padding: const EdgeInsets.all(1),
-            margin: const EdgeInsets.only(top: 8),
+            margin: const EdgeInsets.only(right: 8),
             decoration: BoxDecoration(
               borderRadius: defaultBorderRadius,
               border: Border.all(
@@ -57,12 +57,26 @@ class _ColorIndicatorState extends State<ColorIndicator> {
       } else {
         children.add(
           Padding(
-            padding: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(right: 8),
             child: child,
           ),
         );
       }
     }
-    return Column(children: children);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Color",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Row(children: children),
+      ],
+    );
   }
 }

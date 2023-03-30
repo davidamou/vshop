@@ -1,10 +1,11 @@
 import 'package:go_router/go_router.dart';
-import 'package:vshop/router/router.dart';
-import '../screens/favorite_page.dart';
-import '../screens/home/home_page.dart';
-import '../screens/navigation_page.dart';
-import '../screens/profile/profile_page.dart';
-import '../screens/search_page.dart';
+import 'package:vshop/utils/router/router.dart';
+import '../../screens/favorite_page.dart';
+import '../../screens/home/home_page.dart';
+import '../../screens/navigation_page.dart';
+import '../../screens/profile/profile_page.dart';
+import '../../screens/search/search_page.dart';
+
 
 final shellRouter = ShellRoute(
   navigatorKey: shellNavigatorKey,

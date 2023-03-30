@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vshop/constants/colors.dart';
 
 import '../../../constants/style.dart';
 
@@ -15,7 +16,7 @@ class TabAdaptive extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: defaultBorderRadius,
         border: Border.all(
-          color: Colors.black.withOpacity(.2),
+          color: getPrimaryColor(context).withOpacity(.2),
           width: 0.5,
         ),
       ),

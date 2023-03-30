@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'loading/login_modal.dart';
+import 'login/login_modal.dart';
 
 class NavigationPage extends StatelessWidget {
   final Widget child;
   static ValueNotifier<int> indexNotifyValue = ValueNotifier(0);
-
   NavigationPage({Key? key, required this.child}) : super(key: key);
 
   final user = FirebaseAuth.instance.currentUser;
@@ -30,7 +29,9 @@ class NavigationPage extends StatelessWidget {
               indexNotifyValue.value = index;
               context.go('/search');
             }
-            if (index == 2) context.push('/shopping');
+            if (index == 2) {
+              context.go('/shopping');
+            }
             if (index == 3) {
               if (user != null) {
                 context.go('/favorite');
@@ -55,9 +56,9 @@ class NavigationPage extends StatelessWidget {
               activeIcon: Icon(Iconsax.search_normal_15),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Iconsax.shopping_bag),
+              icon: Icon(Iconsax.notification),
               label: 'Panier',
-              activeIcon: Icon(Iconsax.shopping_bag5),
+              activeIcon: Icon(Iconsax.notification),
             ),
             BottomNavigationBarItem(
               icon: Icon(Iconsax.heart),
