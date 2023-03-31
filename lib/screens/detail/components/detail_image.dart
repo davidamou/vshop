@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../../../constants/function.dart';
+import '../../../utils/widget_function/function.dart';
 
 class DetailImage extends StatelessWidget {
   final List images;
@@ -14,7 +14,7 @@ class DetailImage extends StatelessWidget {
       this.currentIndex = 0,
       required this.images,
       required this.colorIndex,
-      required this.onImageChanged})
+      required this.onImageChanged,})
       : super(key: key);
 
   @override
@@ -40,7 +40,7 @@ class DetailImage extends StatelessWidget {
                 fit: BoxFit.cover,
                 placeholder: (context, url) => Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
+                    color: getPrimaryColor(context).withOpacity(.1),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),

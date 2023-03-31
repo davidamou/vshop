@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:vshop/screens/search/search_page.dart';
 import 'package:vshop/widgets/product_card.dart';
 import 'package:vshop/widgets/grid_adaptive.dart';
 
@@ -17,13 +18,15 @@ class GridBuilder extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return GridAdaptive(
-              children: snapshot.data!.docs
-                  .map(
-                    (product) => ProductCard(
-                      product: product.data(),
-                    ),
-                  )
-                  .toList());
+              children: snapshot.data!.docs.map((product) {
+                var word = product.data().name!;
+                if (!SearchPage.wordSuggestions.contains(word)) {
+                  SearchPage.wordSuggestions.add(word);
+                }
+            return ProductCard(
+              product: product.data(),
+            );
+          }).toList());
         }
         if (snapshot.hasError) {
           return Container();

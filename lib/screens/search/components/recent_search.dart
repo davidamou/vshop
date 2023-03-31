@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vshop/constants/colors.dart';
 import 'package:vshop/constants/text_style.dart';
+
+import '../../../utils/widget_function/function.dart';
 
 class RecentSearch extends StatelessWidget {
   final String text;

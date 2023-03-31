@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vshop/constants/colors.dart';
-
 import '../../../constants/style.dart';
+import '../../../utils/widget_function/function.dart';
 
 class TabAdaptive extends StatelessWidget {
   final String text;

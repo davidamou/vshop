@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vshop/screens/detail/components/detail_size.dart';
-import 'package:vshop/constants/function.dart';
+import 'package:vshop/utils/widget_function/function.dart';
 import 'package:vshop/screens/detail/components/detail_bottom_bar.dart';
 import 'package:vshop/screens/detail/components/detail_image.dart';
 import '../../constants/text_style.dart';

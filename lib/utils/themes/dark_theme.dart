@@ -48,5 +48,8 @@ ThemeData darkTheme(BuildContext context) {
       focusedBorder: outlineInput,
       enabledBorder: outlineInput,
     ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: primaryColorDark,
+    ),
   );
 }

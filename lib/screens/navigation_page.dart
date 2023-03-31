@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-
 import 'login/login_modal.dart';
 
 class NavigationPage extends StatelessWidget {
@@ -30,7 +29,7 @@ class NavigationPage extends StatelessWidget {
               context.go('/search');
             }
             if (index == 2) {
-              context.go('/shopping');
+              context.push('/shopping');
             }
             if (index == 3) {
               if (user != null) {

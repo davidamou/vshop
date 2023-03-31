@@ -19,45 +19,53 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.titleSmall;
-    return InkWell(
-      onTap: () {
-        SearchPage.addToRecentViewList(widget.product);
-        context.push('/detail', extra: widget.product);
-      },
-      borderRadius: defaultBorderRadius,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Hero(
-            tag: widget.product.id,
-            child: AspectRatio(
+    return Hero(
+      tag: widget.product.id,
+      child: InkWell(
+        onTap: () {
+          context.push('/detail', extra: widget.product);
+          SearchPage.addToRecentViewList(widget.product);
+        },
+        borderRadius: defaultBorderRadius,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
               aspectRatio: 0.7,
               child: CacheNetworkImageAdaptive(
                 imageUrl: "${widget.product.images?.first['imagesUrl'][0]}",
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            '${widget.product.name}',
-            style: textStyle,
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Text(
-                "\$",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
-                ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${widget.product.name}',
+                    style: textStyle,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        "\$",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
+                        ),
+                      ),
+                      Text(
+                        "${widget.product.price}",
+                        style: textStyle,
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              Text(
-                "${widget.product.price}",
-                style: textStyle,
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

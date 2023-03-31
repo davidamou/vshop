@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0XFF1E1E1E);
+const primaryColorDark = Color(0xffffd791);
 const backgroundColor = Colors.white;
-final primarySwatch = MaterialColor(
+
+MaterialColor primarySwatch = MaterialColor(
   primaryColor.value,
   {
     50: primaryColor.withOpacity(.05),
@@ -17,10 +19,7 @@ final primarySwatch = MaterialColor(
     900: primaryColor.withOpacity(.9),
   },
 );
-
-const primaryColorDark = Color(0xffffd791);
-
-final primarySwatchDark = MaterialColor(
+MaterialColor primarySwatchDark = MaterialColor(
   primaryColorDark.value,
   {
     50: primaryColor.withOpacity(.05),
@@ -35,15 +34,3 @@ final primarySwatchDark = MaterialColor(
     900: primaryColor.withOpacity(.9),
   },
 );
-
-Color getPrimaryColor(BuildContext context) {
-  return Theme.of(context).colorScheme.primary;
-}
-
-Color getBackgroundColor(BuildContext context) {
-  return Theme.of(context).colorScheme.background;
-}
-
-Color getTextColor(BuildContext context) {
-  return Theme.of(context).colorScheme.onBackground;
-}

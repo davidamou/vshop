@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vshop/constants/function.dart';
+import 'package:vshop/utils/widget_function/function.dart';
 import '../../constants/style.dart';
 import 'components/product_chart.dart';
 
@@ -20,6 +20,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
     return Scaffold(
       appBar: AppBar(
         leading: back(context),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: _emptyBasket,
@@ -139,9 +140,9 @@ class _ShoppingPageState extends State<ShoppingPage> {
 
   double _totalPrice() {
     double sum = 0.0;
-    ShoppingPage.chartListProduct.forEach((element) {
+    for (var element in ShoppingPage.chartListProduct) {
       sum += (element.price + element.quantity);
-    });
+    }
     return sum;
   }
 }

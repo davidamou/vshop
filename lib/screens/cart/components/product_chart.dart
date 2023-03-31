@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:vshop/widgets/cache_network_image_adaptive.dart';
-
 import '../../../constants/style.dart';
 
 class ProductChart extends StatefulWidget {
-  late int quantity;
+  final int quantity;
   final String productId;
   final String imageUrl;
   final String productName;
   final String size;
   final double price;
 
-  ProductChart(
+  const ProductChart(
       {super.key,
       required this.quantity,
       required this.productId,
@@ -25,6 +24,14 @@ class ProductChart extends StatefulWidget {
 }
 
 class _ProductChartState extends State<ProductChart> {
+  int _quantity = 1;
+
+  @override
+  void setState(VoidCallback fn) {
+    _quantity = widget.quantity;
+    super.setState(fn);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -91,7 +98,7 @@ class _ProductChartState extends State<ProductChart> {
                   icon: const Text('-'),
                   onTap: () {
                     setState(() {
-                      if (widget.quantity > 1) widget.quantity -= 1;
+                      if (_quantity > 1) _quantity -= 1;
                     });
                   },
                 ),
@@ -101,7 +108,7 @@ class _ProductChartState extends State<ProductChart> {
                 quantityButton(
                   icon: const Text('+'),
                   onTap: () => setState(() {
-                    if (widget.quantity < 25) widget.quantity += 1;
+                    if (_quantity < 25) _quantity += 1;
                   }),
                 ),
               ],

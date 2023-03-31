@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:vshop/constants/style.dart';
 import 'package:vshop/providers/post_provider.dart';
@@ -9,7 +8,7 @@ import 'package:vshop/screens/home/components/post_view.dart';
 import 'package:vshop/screens/home/components/setting_drawer.dart';
 import 'package:vshop/screens/home/components/tab_adaptive.dart';
 
-import '../../constants/colors.dart';
+import '../../utils/widget_function/function.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

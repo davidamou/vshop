@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vshop/constants/style.dart';
 
+import '../../../constants/text_style.dart';
+
 class DetailSize extends StatelessWidget {
   final Function(int) onSizeChanged;
   final List<dynamic> size;
@@ -18,13 +20,9 @@ class DetailSize extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Size",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: titleMedium(context, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8.0),
         DefaultTabController(

@@ -12,3 +12,15 @@ Widget back(BuildContext context) {
 Size getScreenSize(BuildContext context) {
   return MediaQuery.of(context).size;
 }
+
+Color getPrimaryColor(BuildContext context) {
+  return Theme.of(context).colorScheme.primary;
+}
+
+Color getBackgroundColor(BuildContext context) {
+  return Theme.of(context).colorScheme.background;
+}
+
+Color getTextColor(BuildContext context) {
+  return Theme.of(context).colorScheme.onBackground;
+}
