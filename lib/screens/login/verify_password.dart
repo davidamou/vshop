@@ -21,17 +21,16 @@ class VerifyPassword extends StatelessWidget {
                 style: titleLarge(context, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24.0),
-
               const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Password',
+                  hintText: 'Enter your password',
                 ),
               ),
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () => context.go('/home'),
-                child: const Text('Validate'),
+                child: const Text('Verify'),
               ),
             ],
           ),

@@ -6,7 +6,7 @@ import '../../constants/text_style.dart';
 
 const _divider = SizedBox(
   width: 80.0,
-  child:   Divider(
+  child: Divider(
     height: 4,
     thickness: 1,
   ),
@@ -35,8 +35,8 @@ void showLoginModal(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'To login',
-                  style: titleMedium(
+                  'Log In',
+                  style: titleLarge(
                     context,
                     fontWeight: FontWeight.bold,
                   ),

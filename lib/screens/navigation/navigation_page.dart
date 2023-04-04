@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'login/login_modal.dart';
+import '../login/login_modal.dart';
 
 class NavigationPage extends StatelessWidget {
   final Widget child;
-  static ValueNotifier<int> indexNotifyValue = ValueNotifier(0);
+  static ValueNotifier<int> navCureentIndexValue = ValueNotifier(0);
   NavigationPage({Key? key, required this.child}) : super(key: key);
 
   final user = FirebaseAuth.instance.currentUser;
@@ -16,31 +16,31 @@ class NavigationPage extends StatelessWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: indexNotifyValue,
+        valueListenable: navCureentIndexValue,
         builder: (context, value, child) => BottomNavigationBar(
           currentIndex: value,
           onTap: (index) {
-            if (index == 0) {
-              context.go('/home');
-              indexNotifyValue.value = index;
-            }
-            if (index == 1) {
-              indexNotifyValue.value = index;
-              context.go('/search');
-            }
-            if (index == 2) {
-              context.push('/shopping');
-            }
-            if (index == 3) {
-              if (user != null) {
-                context.go('/favorite');
-                indexNotifyValue.value = index;
-              } else {
-                showLoginModal(context);
-              }
-            }
-            if (index == 4) {
-              context.go('/profile');
+            navCureentIndexValue.value = index;
+            switch (index) {
+              case 0:
+                context.go('/home');
+                break;
+              case 1:
+                context.go('/search');
+                break;
+              case 2:
+                context.go('/notification');
+                break;
+              case 3:
+                if (user != null) {
+                  context.go('/favorite');
+                } else {
+                  showLoginModal(context);
+                }
+                break;
+              case 4:
+                context.go('/profile');
+                break;
             }
           },
           items: const [
@@ -57,7 +57,7 @@ class NavigationPage extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Iconsax.notification),
               label: 'Panier',
-              activeIcon: Icon(Iconsax.notification),
+              activeIcon: Icon(Iconsax.notification_1),
             ),
             BottomNavigationBarItem(
               icon: Icon(Iconsax.heart),

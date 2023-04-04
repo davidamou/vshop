@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/models/product.dart';
 import 'package:vshop/screens/detail/detail_page.dart';
-import 'package:vshop/screens/login/start_page.dart';
+import 'package:vshop/screens/start_page/start_page.dart';
 import 'package:vshop/screens/login/verify_password.dart';
 import 'package:vshop/utils/router/shell_router.dart';
 import '../../screens/cart/shopping_page.dart';
@@ -27,7 +27,7 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: rootNavigatorKey,
-      path: '/shopping',
+      path: '/cart',
       builder: (context, state) => const ShoppingPage(),
     ),
     GoRoute(

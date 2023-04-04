@@ -1,31 +1,57 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/utils/router/router.dart';
-import '../../screens/favorite_page.dart';
+import '../../screens/favorite/favorite_page.dart';
 import '../../screens/home/home_page.dart';
-import '../../screens/navigation_page.dart';
+import '../../screens/navigation/navigation_page.dart';
+import '../../screens/notification/notification_page.dart';
 import '../../screens/profile/profile_page.dart';
 import '../../screens/search/search_page.dart';
 
-
 final shellRouter = ShellRoute(
   navigatorKey: shellNavigatorKey,
-  builder: (context, state, child) => NavigationPage(child: child),
+  pageBuilder: (context, state, child) => pageBuilder(
+    context,
+    state,
+    NavigationPage(child: child),
+  ),
   routes: [
     GoRoute(
       path: '/home',
-      builder: (context, state) => const HomePage(),
+       pageBuilder: (context, state) =>
+          pageBuilder(context, state, const HomePage()),
     ),
     GoRoute(
       path: '/search',
-      builder: (context, state) => const SearchPage(),
+      pageBuilder: (context, state) =>
+          pageBuilder(context, state, const SearchPage()),
     ),
     GoRoute(
       path: '/favorite',
-      builder: (context, state) => const FavoritePage(),
+      pageBuilder: (context, state) =>
+          pageBuilder(context, state, const FavoritePage()),
     ),
     GoRoute(
       path: '/profile',
-      builder: (context, state) => const ProfilePage(),
-    )
+      pageBuilder: (context, state) =>
+          pageBuilder(context, state, const ProfilePage()),
+    ),
+    GoRoute(
+      path: '/notification',
+      pageBuilder: (context, state) =>
+          pageBuilder(context, state, const NotificationPage()),
+    ),
   ],
 );
+
+pageBuilder(context, state, Widget page) {
+  return CustomTransitionPage(
+    child: page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: child,
+      );
+    },
+  );
+}

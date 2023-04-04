@@ -40,7 +40,6 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -55,48 +54,54 @@ class _DetailPageState extends State<DetailPage> {
                 },
               ),
             ),
-            const SizedBox(height: 20.0),
-            Text(
-              '${product.name}',
-              style: titleMedium(context, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${product.name}',
+                    style: titleMedium(context, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 12.0),
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.star1,
+                        color: Colors.orange,
+                        size: 16,
+                      ),
+                      Text(
+                        " 4.8",
+                        style: titleSmall(context, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "(3335)   *   212 reviwes",
+                        style: bodySmall(context),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    '${product.description}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: bodyMedium(context),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ColorIndicator(
+                    currentIndex: _colorIndex,
+                    onTap: (index) => setState(() => _colorIndex = index),
+                    colors: getColors(),
+                  ),
+                  const SizedBox(height: 16.0),
+                  DetailSize(
+                    onSizeChanged: (size) => setState(() => _size = size),
+                    size: product.size!,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 12.0),
-            Row(
-              children: [
-                const Icon(
-                  Iconsax.star1,
-                  color: Colors.orange,
-                  size: 16,
-                ),
-                Text(
-                  " 4.8",
-                  style: titleSmall(context, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "(3335)   *   212 reviwes",
-                  style: bodySmall(context),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12.0),
-            Text(
-              '${product.description}',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: bodyMedium(context),
-            ),
-            const SizedBox(height: 16.0),
-            ColorIndicator(
-              currentIndex: _colorIndex,
-              onTap: (index) => setState(() => _colorIndex = index),
-              colors: getColors(),
-            ),
-            const SizedBox(height: 16.0),
-            DetailSize(
-              onSizeChanged: (size) => setState(() => _size = size),
-              size: product.size!,
-            ),
-            const SizedBox(height: 16.0),
           ],
         ),
       ),

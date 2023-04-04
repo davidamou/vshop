@@ -43,7 +43,7 @@ class RegisterForm extends StatelessWidget {
               const SizedBox(height: 24.0),
               ElevatedButton(
                 onPressed: () => context.go('/verify-password'),
-                child: const Text('Save'),
+                child: const Text('Continue'),
               ),
             ],
           ),

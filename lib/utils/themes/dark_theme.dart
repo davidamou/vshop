@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/colors.dart';
+import '../colors.dart';
 import '../../constants/style.dart';
 import 'light_theme.dart';
 
@@ -36,9 +36,9 @@ ThemeData darkTheme(BuildContext context) {
         shape: RoundedRectangleBorder(borderRadius: defaultBorderRadius),
       ),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      unselectedItemColor: Colors.white54,
-      selectedItemColor: Colors.white,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: primaryColorDark.withOpacity(0.4),
+      selectedItemColor: primaryColorDark,
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),

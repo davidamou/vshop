@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../main.dart';
 
 Widget back(BuildContext context) {
   return IconButton(
@@ -23,4 +25,26 @@ Color getBackgroundColor(BuildContext context) {
 
 Color getTextColor(BuildContext context) {
   return Theme.of(context).colorScheme.onBackground;
+}
+
+Future<void> changeThemeMode(BuildContext context) async {
+  if (Theme.of(context).brightness == Brightness.light) {
+    themeMode.value = ThemeMode.dark;
+  } else {
+    themeMode.value = ThemeMode.light;
+  }
+
+  var pref = await SharedPreferences.getInstance();
+  pref.setString('themeMode', themeMode.value.name);
+}
+
+void restoreThemeMode() {
+  var pref = SharedPreferences.getInstance();
+  pref.then((value) {
+    if (value.getString('themeMode') == 'dark') {
+      themeMode.value = ThemeMode.dark;
+    } else {
+      themeMode.value = ThemeMode.light;
+    }
+  });
 }

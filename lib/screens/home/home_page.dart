@@ -7,7 +7,6 @@ import 'package:vshop/screens/home/components/home_app_bar.dart';
 import 'package:vshop/screens/home/components/post_view.dart';
 import 'package:vshop/screens/home/components/setting_drawer.dart';
 import 'package:vshop/screens/home/components/tab_adaptive.dart';
-
 import '../../utils/widget_function/function.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,8 +39,11 @@ class HomePage extends StatelessWidget {
                         post: snapshot.data!.docs.first.data(),
                       );
                     }
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: defaultBorderRadius,
+                        color: getPrimaryColor(context).withOpacity(0.4),
+                      ),
                     );
                   },
                 ),

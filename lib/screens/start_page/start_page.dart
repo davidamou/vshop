@@ -1,21 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vshop/constants/text_style.dart';
+import 'package:vshop/utils/widget_function/function.dart';
 import '../../constants/style.dart';
-import 'login_modal.dart';
+import '../login/login_modal.dart';
 
-class StartPage extends StatelessWidget {
-  const StartPage({Key? key}) : super(key: key);
+class StartPage extends StatefulWidget {
+  const StartPage({super.key});
+
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..forward();
+
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: height,
+          height: getScreenSize(context).height,
           child: Stack(
             children: [
               const SizedBox(
@@ -25,15 +49,13 @@ class StartPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              Positioned(
-                bottom: 12.0,
-                left: 0,
-                right: 0,
+              AnimatedBuilder(
+                animation: _controller,
                 child: Container(
                   margin: const EdgeInsets.all(24),
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.background,
+                    color: getBackgroundColor(context),
                     borderRadius: defaultBorderRadius,
                   ),
                   child: Column(
@@ -65,6 +87,17 @@ class StartPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                builder: (context, child) {
+                  return Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: _animation.value * 24,
+                    child: FadeTransition(
+                      opacity: _controller,
+                      child: child,
+                    ),
+                  );
+                },
               ),
             ],
           ),

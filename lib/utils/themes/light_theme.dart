@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vshop/constants/style.dart';
-import '../../constants/colors.dart';
+import '../colors.dart';
 
 var outlineInput = OutlineInputBorder(
   borderRadius: defaultBorderRadius,

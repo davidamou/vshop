@@ -98,20 +98,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Icon(Iconsax.money, size: iconSize),
                     trailing: trailingIcon,
                   ),
-                  // ValueListenableBuilder<ThemeMode>(
-                  //     valueListenable: themeModeNotifier,
-                  //     builder: (context, value, child) {
-                  //       return ListTile(
-                  //         leading: value.name == "dark"
-                  //             ? Icon(Iconsax.moon4, size: iconSize)
-                  //             : Icon(Iconsax.sun_1, size: iconSize),
-                  //         title: const Text('Theme mode'),
-                  //         subtitle: Text(value.name),
-                  //         onTap: () => showDialog(
-                  //             context: context, builder: (_) => const ThemeDialog()),
-                  //         trailing: trailingIcon,
-                  //       );
-                  //     }),
                   ListTile(
                     title: const Text('My purchases'),
                     onTap: () {},
