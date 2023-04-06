@@ -17,3 +17,15 @@ TextStyle? titleMedium(BuildContext context, {FontWeight? fontWeight}) =>
 
 TextStyle? titleLarge(BuildContext context, {FontWeight? fontWeight}) =>
     Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: fontWeight);
+
+TextStyle? headlineLarge(BuildContext context, {FontWeight? fontWeight}) =>
+    Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight: fontWeight);
+
+TextStyle? headlineMedium(BuildContext context, {FontWeight? fontWeight}) =>
+    Theme.of(context)
+        .textTheme
+        .headlineMedium
+        ?.copyWith(fontWeight: fontWeight);
+
+TextStyle? headlineSmall(BuildContext context, {FontWeight? fontWeight}) =>
+    Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: fontWeight);

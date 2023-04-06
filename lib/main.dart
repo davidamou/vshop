@@ -4,6 +4,7 @@ import 'package:vshop/utils/router/router.dart';
 import 'package:vshop/utils/themes/dark_theme.dart';
 import 'package:vshop/utils/themes/light_theme.dart';
 import 'package:vshop/utils/widget_function/function.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     restoreThemeMode();
-    
+
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: themeMode,
       builder: (context, themeModeValue, child) {

@@ -18,7 +18,10 @@ class VerifyPassword extends StatelessWidget {
               const SizedBox(height: 24.0),
               Text(
                 'Enter your password to continue',
-                style: titleLarge(context, fontWeight: FontWeight.bold),
+                style: headlineSmall(
+                  context,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 24.0),
               const TextField(
